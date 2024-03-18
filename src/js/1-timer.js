@@ -58,19 +58,19 @@ const timer = document.querySelector(".timer");
 dataStart.addEventListener("click", startTimer);
 
 function startTimer() {
-  dataStart.setAttribute("disabled", true);
-  selector.setAttribute("disabled", true);
-
+  let msDifference = userSelectedDate - new Date();
   const intervalId = setInterval(() => {
-    const timeLeft = userSelectedDate - new Date();
-    if (timeLeft <= 0) {
+    let { days, hours, minutes, seconds } = convertMs(msDifference);
+    document.querySelector('[data-days]').textContent = addZeroOnStart(days);
+    document.querySelector('[data-hours]').textContent = addZeroOnStart(hours);
+    document.querySelector('[data-minutes]').textContent = addZeroOnStart(minutes);
+    document.querySelector('[data-seconds]').textContent = addZeroOnStart(seconds);
+    if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
       clearInterval(intervalId);
-      timer.textContent = "00:00:00:00";
-      return
+      dataStart.removeAttribute("disabled");
+      selector.removeAttribute("disabled");
     }
-    const { days, hours, minutes, seconds } = convertMs(timeLeft);
-    const formattedTime = `${addZeroOnStart(days)}:${addZeroOnStart(hours)}:${addZeroOnStart(minutes)}:${addZeroOnStart(seconds)}`;
-    timer.textContent = formattedTime;
+    msDifference -= 1000;
   }, 1000);
 }
 
@@ -97,3 +97,6 @@ function convertMs(ms) {
 function addZeroOnStart(value) {
   return value < 10 ? "0" + value : value;
 }
+
+// 
+
