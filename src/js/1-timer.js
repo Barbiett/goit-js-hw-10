@@ -1,25 +1,5 @@
 
 
-// Инициализируйте flatpickr на элементе выбора даты с указанием параметров, включая метод onClose для
-// обработки выбранной даты.
-
-// Напишите функцию обработчик для метода onClose, в которой проверяйте выбранную дату.Если она находится в
-// прошлом, сделайте кнопку "Start" неактивной и покажите сообщение об ошибке с помощью iziToast.
-// Если дата корректна, активируйте кнопку "Start".
-
-// Создайте функцию для добавления ведущего нуля к числу, если оно состоит из одной цифры.
-
-// Напишите функцию для расчета оставшегося времени до выбранной даты на основе разницы между текущим временем
-//  и выбранной датой.
-
-// Создайте функцию для обновления интерфейса таймера с учетом оставшегося времени.
-
-// Назначьте обработчик события click на кнопку "Start", который будет запускать таймер.
-//  Внутри обработчика делайте кнопку неактивной, запускайте таймер и выводите оставшееся время на страницу.
-
-// Напишите логику для остановки таймера, когда оставшееся время достигнет нуля.
-
-
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
@@ -45,7 +25,7 @@ const options = {
         message: "Please choose a date in the future.",
         position: "topRight"
       });
-      dataStart.setAttribute("disabled", true);
+      dataStart.setAttribute("disabled", "true");
     } else {
       dataStart.removeAttribute("disabled");
     }
@@ -67,8 +47,8 @@ function startTimer() {
     document.querySelector('[data-seconds]').textContent = addZeroOnStart(seconds);
     if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
       clearInterval(intervalId);
-      dataStart.removeAttribute("disabled");
-      selector.removeAttribute("disabled");
+      dataStart.removeAttribute("disabled", true);
+      selector.removeAttribute("disabled", true);
     }
     msDifference -= 1000;
   }, 1000);
