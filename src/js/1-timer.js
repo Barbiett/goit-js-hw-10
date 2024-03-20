@@ -45,7 +45,7 @@ const options = {
         message: "Please choose a date in the future.",
         position: "topRight"
       });
-      dataStart.setAttribute("disabled");
+      dataStart.setAttribute("disabled", true);
     } else {
       dataStart.removeAttribute("disabled");
     }
