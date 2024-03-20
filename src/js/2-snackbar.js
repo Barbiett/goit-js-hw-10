@@ -10,8 +10,11 @@ function handleSubmit(event) {
     const selectedCheckbox = document.querySelector('input[name="state"]:checked').value;
     const promise = new Promise((resolve, reject) => {
         if (selectedCheckbox === "fulfilled") {
-            setTimeout(() => resolve(inputDelay) , inputDelay);
-        } else { setTimeout(() => reject(inputDelay)), inputDelay}});
+            setTimeout(() => resolve(inputDelay), inputDelay);
+        } else {
+            setTimeout(() => reject(inputDelay), inputDelay);
+        }
+    });
     promise.then(
         () => {
             iziToast.success({ message: `✅ Fulfilled promise in ${inputDelay}ms`, position: "topRight" });
